@@ -9,8 +9,32 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UseCaseRouteImport } from './routes/use-case'
+import { Route as SetupRouteImport } from './routes/setup'
+import { Route as RecommendationRouteImport } from './routes/recommendation'
+import { Route as DeviceRouteImport } from './routes/device'
 import { Route as IndexRouteImport } from './routes/index'
 
+const UseCaseRoute = UseCaseRouteImport.update({
+  id: '/use-case',
+  path: '/use-case',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetupRoute = SetupRouteImport.update({
+  id: '/setup',
+  path: '/setup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecommendationRoute = RecommendationRouteImport.update({
+  id: '/recommendation',
+  path: '/recommendation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeviceRoute = DeviceRouteImport.update({
+  id: '/device',
+  path: '/device',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +43,72 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/device': typeof DeviceRoute
+  '/recommendation': typeof RecommendationRoute
+  '/setup': typeof SetupRoute
+  '/use-case': typeof UseCaseRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/device': typeof DeviceRoute
+  '/recommendation': typeof RecommendationRoute
+  '/setup': typeof SetupRoute
+  '/use-case': typeof UseCaseRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/device': typeof DeviceRoute
+  '/recommendation': typeof RecommendationRoute
+  '/setup': typeof SetupRoute
+  '/use-case': typeof UseCaseRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/device' | '/recommendation' | '/setup' | '/use-case'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/device' | '/recommendation' | '/setup' | '/use-case'
+  id: '__root__' | '/' | '/device' | '/recommendation' | '/setup' | '/use-case'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DeviceRoute: typeof DeviceRoute
+  RecommendationRoute: typeof RecommendationRoute
+  SetupRoute: typeof SetupRoute
+  UseCaseRoute: typeof UseCaseRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/use-case': {
+      id: '/use-case'
+      path: '/use-case'
+      fullPath: '/use-case'
+      preLoaderRoute: typeof UseCaseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/setup': {
+      id: '/setup'
+      path: '/setup'
+      fullPath: '/setup'
+      preLoaderRoute: typeof SetupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recommendation': {
+      id: '/recommendation'
+      path: '/recommendation'
+      fullPath: '/recommendation'
+      preLoaderRoute: typeof RecommendationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/device': {
+      id: '/device'
+      path: '/device'
+      fullPath: '/device'
+      preLoaderRoute: typeof DeviceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +121,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DeviceRoute: DeviceRoute,
+  RecommendationRoute: RecommendationRoute,
+  SetupRoute: SetupRoute,
+  UseCaseRoute: UseCaseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

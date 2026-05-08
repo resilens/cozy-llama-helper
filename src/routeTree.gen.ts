@@ -13,6 +13,7 @@ import { Route as UseCaseRouteImport } from './routes/use-case'
 import { Route as SetupRouteImport } from './routes/setup'
 import { Route as RecommendationRouteImport } from './routes/recommendation'
 import { Route as DeviceRouteImport } from './routes/device'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
 const UseCaseRoute = UseCaseRouteImport.update({
@@ -35,6 +36,11 @@ const DeviceRoute = DeviceRouteImport.update({
   path: '/device',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -43,6 +49,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/device': typeof DeviceRoute
   '/recommendation': typeof RecommendationRoute
   '/setup': typeof SetupRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/device': typeof DeviceRoute
   '/recommendation': typeof RecommendationRoute
   '/setup': typeof SetupRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/device': typeof DeviceRoute
   '/recommendation': typeof RecommendationRoute
   '/setup': typeof SetupRoute
@@ -65,14 +74,28 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/device' | '/recommendation' | '/setup' | '/use-case'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/device'
+    | '/recommendation'
+    | '/setup'
+    | '/use-case'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/device' | '/recommendation' | '/setup' | '/use-case'
-  id: '__root__' | '/' | '/device' | '/recommendation' | '/setup' | '/use-case'
+  to: '/' | '/about' | '/device' | '/recommendation' | '/setup' | '/use-case'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/device'
+    | '/recommendation'
+    | '/setup'
+    | '/use-case'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   DeviceRoute: typeof DeviceRoute
   RecommendationRoute: typeof RecommendationRoute
   SetupRoute: typeof SetupRoute
@@ -109,6 +132,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DeviceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -121,6 +151,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   DeviceRoute: DeviceRoute,
   RecommendationRoute: RecommendationRoute,
   SetupRoute: SetupRoute,

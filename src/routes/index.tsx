@@ -140,15 +140,20 @@ function Landing() {
             </div>
             <div className="col-span-6 md:col-span-3">
               <div className="text-foreground">Edition</div>
-              <div className="mt-1">Climate Week · Hackathon</div>
+              <div className="mt-1">GreenTech · Hackathon</div>
             </div>
             <div className="col-span-6 md:col-span-3">
               <div className="text-foreground">Runtime</div>
               <div className="mt-1">llamafile · local</div>
             </div>
             <div className="col-span-6 md:col-span-3">
-              <div className="text-foreground">Tracking</div>
-              <div className="mt-1">None, never</div>
+              <Link
+                to="/about"
+                className="text-foreground underline-offset-4 hover:text-primary hover:underline"
+              >
+                About
+              </Link>
+              <div className="mt-1">Fabio · Oleg · David · Stephan</div>
             </div>
           </div>
         </footer>

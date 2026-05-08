@@ -40,12 +40,13 @@ function Landing() {
           <span className="inline-block rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground">
             No accounts. No cloud. No tracking.
           </span>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
-            Run helpful AI on <span className="text-primary">your own laptop</span>.
+          <h1 className="mt-6 text-5xl font-semibold tracking-tight text-foreground md:text-6xl lg:text-7xl">
+            An AI you can <span className="text-primary">put in the trash</span>.
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-lg">
-            We'll match you to a local AI model that fits your device, your tasks, and the planet — in
-            three short steps.
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
+            No subscription. No data center burning megawatts on your behalf. Just a single file on your
+            laptop — drag it to the bin the day you're done. We'll help you pick the smallest model that
+            still nails your tasks.
           </p>
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <Link

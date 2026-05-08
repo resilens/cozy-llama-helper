@@ -46,9 +46,9 @@ function Landing() {
           <div className="col-span-12 md:col-span-10">
             <p className="font-mono text-xs tracking-wide text-primary">Hello — welcome.</p>
             <h1 className="mt-4 text-4xl font-semibold leading-[1.05] tracking-tight text-foreground md:text-6xl lg:text-7xl">
-              An AI that flips
+              Flips the lights
               <br />
-              <span className="text-primary">on and off</span> like a light.
+              <span className="text-primary">off on AI.</span>
             </h1>
             <div className="mt-8 grid grid-cols-12 items-start gap-6">
               <p className="col-span-12 text-base leading-relaxed text-foreground md:col-span-7 md:text-lg">

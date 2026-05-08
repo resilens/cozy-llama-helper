@@ -12,9 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as UseCaseRouteImport } from './routes/use-case'
 import { Route as SetupRouteImport } from './routes/setup'
 import { Route as RecommendationRouteImport } from './routes/recommendation'
+import { Route as DocumentationRouteImport } from './routes/documentation'
 import { Route as DeviceRouteImport } from './routes/device'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DocumentationThunderbirdRouteImport } from './routes/documentation/thunderbird'
+import { Route as DocumentationLibreofficeRouteImport } from './routes/documentation/libreoffice'
+import { Route as DocumentationInkscapeRouteImport } from './routes/documentation/inkscape'
 
 const UseCaseRoute = UseCaseRouteImport.update({
   id: '/use-case',
@@ -29,6 +33,11 @@ const SetupRoute = SetupRouteImport.update({
 const RecommendationRoute = RecommendationRouteImport.update({
   id: '/recommendation',
   path: '/recommendation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentationRoute = DocumentationRouteImport.update({
+  id: '/documentation',
+  path: '/documentation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DeviceRoute = DeviceRouteImport.update({
@@ -46,31 +55,60 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DocumentationThunderbirdRoute =
+  DocumentationThunderbirdRouteImport.update({
+    id: '/thunderbird',
+    path: '/thunderbird',
+    getParentRoute: () => DocumentationRoute,
+  } as any)
+const DocumentationLibreofficeRoute =
+  DocumentationLibreofficeRouteImport.update({
+    id: '/libreoffice',
+    path: '/libreoffice',
+    getParentRoute: () => DocumentationRoute,
+  } as any)
+const DocumentationInkscapeRoute = DocumentationInkscapeRouteImport.update({
+  id: '/inkscape',
+  path: '/inkscape',
+  getParentRoute: () => DocumentationRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/device': typeof DeviceRoute
+  '/documentation': typeof DocumentationRouteWithChildren
   '/recommendation': typeof RecommendationRoute
   '/setup': typeof SetupRoute
   '/use-case': typeof UseCaseRoute
+  '/documentation/inkscape': typeof DocumentationInkscapeRoute
+  '/documentation/libreoffice': typeof DocumentationLibreofficeRoute
+  '/documentation/thunderbird': typeof DocumentationThunderbirdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/device': typeof DeviceRoute
+  '/documentation': typeof DocumentationRouteWithChildren
   '/recommendation': typeof RecommendationRoute
   '/setup': typeof SetupRoute
   '/use-case': typeof UseCaseRoute
+  '/documentation/inkscape': typeof DocumentationInkscapeRoute
+  '/documentation/libreoffice': typeof DocumentationLibreofficeRoute
+  '/documentation/thunderbird': typeof DocumentationThunderbirdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/device': typeof DeviceRoute
+  '/documentation': typeof DocumentationRouteWithChildren
   '/recommendation': typeof RecommendationRoute
   '/setup': typeof SetupRoute
   '/use-case': typeof UseCaseRoute
+  '/documentation/inkscape': typeof DocumentationInkscapeRoute
+  '/documentation/libreoffice': typeof DocumentationLibreofficeRoute
+  '/documentation/thunderbird': typeof DocumentationThunderbirdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -78,25 +116,44 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/device'
+    | '/documentation'
     | '/recommendation'
     | '/setup'
     | '/use-case'
+    | '/documentation/inkscape'
+    | '/documentation/libreoffice'
+    | '/documentation/thunderbird'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/device' | '/recommendation' | '/setup' | '/use-case'
+  to:
+    | '/'
+    | '/about'
+    | '/device'
+    | '/documentation'
+    | '/recommendation'
+    | '/setup'
+    | '/use-case'
+    | '/documentation/inkscape'
+    | '/documentation/libreoffice'
+    | '/documentation/thunderbird'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/device'
+    | '/documentation'
     | '/recommendation'
     | '/setup'
     | '/use-case'
+    | '/documentation/inkscape'
+    | '/documentation/libreoffice'
+    | '/documentation/thunderbird'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   DeviceRoute: typeof DeviceRoute
+  DocumentationRoute: typeof DocumentationRouteWithChildren
   RecommendationRoute: typeof RecommendationRoute
   SetupRoute: typeof SetupRoute
   UseCaseRoute: typeof UseCaseRoute
@@ -125,6 +182,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RecommendationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/documentation': {
+      id: '/documentation'
+      path: '/documentation'
+      fullPath: '/documentation'
+      preLoaderRoute: typeof DocumentationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/device': {
       id: '/device'
       path: '/device'
@@ -146,13 +210,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/documentation/thunderbird': {
+      id: '/documentation/thunderbird'
+      path: '/thunderbird'
+      fullPath: '/documentation/thunderbird'
+      preLoaderRoute: typeof DocumentationThunderbirdRouteImport
+      parentRoute: typeof DocumentationRoute
+    }
+    '/documentation/libreoffice': {
+      id: '/documentation/libreoffice'
+      path: '/libreoffice'
+      fullPath: '/documentation/libreoffice'
+      preLoaderRoute: typeof DocumentationLibreofficeRouteImport
+      parentRoute: typeof DocumentationRoute
+    }
+    '/documentation/inkscape': {
+      id: '/documentation/inkscape'
+      path: '/inkscape'
+      fullPath: '/documentation/inkscape'
+      preLoaderRoute: typeof DocumentationInkscapeRouteImport
+      parentRoute: typeof DocumentationRoute
+    }
   }
 }
+
+interface DocumentationRouteChildren {
+  DocumentationInkscapeRoute: typeof DocumentationInkscapeRoute
+  DocumentationLibreofficeRoute: typeof DocumentationLibreofficeRoute
+  DocumentationThunderbirdRoute: typeof DocumentationThunderbirdRoute
+}
+
+const DocumentationRouteChildren: DocumentationRouteChildren = {
+  DocumentationInkscapeRoute: DocumentationInkscapeRoute,
+  DocumentationLibreofficeRoute: DocumentationLibreofficeRoute,
+  DocumentationThunderbirdRoute: DocumentationThunderbirdRoute,
+}
+
+const DocumentationRouteWithChildren = DocumentationRoute._addFileChildren(
+  DocumentationRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   DeviceRoute: DeviceRoute,
+  DocumentationRoute: DocumentationRouteWithChildren,
   RecommendationRoute: RecommendationRoute,
   SetupRoute: SetupRoute,
   UseCaseRoute: UseCaseRoute,
@@ -160,3 +262,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

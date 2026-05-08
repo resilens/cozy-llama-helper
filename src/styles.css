@@ -64,27 +64,27 @@
 }
 
 :root {
-  --radius: 0.75rem;
-  /* Cloud White palette */
-  --background: oklch(0.99 0.003 247);
-  --foreground: oklch(0.2 0.03 256);
+  --radius: 0rem;
+  /* Swiss / International Typographic Style: pure white, ink black, signal red */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.15 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2 0.03 256);
+  --card-foreground: oklch(0.15 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2 0.03 256);
-  --primary: oklch(0.62 0.18 257);
-  --primary-foreground: oklch(0.99 0.003 247);
-  --secondary: oklch(0.95 0.01 250);
-  --secondary-foreground: oklch(0.2 0.03 256);
-  --muted: oklch(0.96 0.008 250);
-  --muted-foreground: oklch(0.55 0.03 256);
-  --accent: oklch(0.93 0.02 220);
-  --accent-foreground: oklch(0.2 0.03 256);
-  --destructive: oklch(0.6 0.22 27);
-  --destructive-foreground: oklch(0.99 0.003 247);
-  --border: oklch(0.91 0.012 250);
-  --input: oklch(0.91 0.012 250);
-  --ring: oklch(0.62 0.18 257);
+  --popover-foreground: oklch(0.15 0 0);
+  --primary: oklch(0.55 0.22 27);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.15 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  --accent: oklch(0.95 0 0);
+  --accent-foreground: oklch(0.15 0 0);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.15 0 0);
+  --input: oklch(0.85 0 0);
+  --ring: oklch(0.15 0 0);
   /* sustainability accent */
   --eco: oklch(0.7 0.13 155);
   --eco-foreground: oklch(0.2 0.05 155);

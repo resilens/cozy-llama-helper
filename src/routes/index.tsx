@@ -46,7 +46,7 @@ function Landing() {
           <div className="col-span-12 md:col-span-10">
             <p className="font-mono text-xs tracking-wide text-primary">Hello — welcome.</p>
             <h1 className="mt-4 text-4xl font-semibold leading-[1.05] tracking-tight text-foreground md:text-6xl lg:text-7xl">
-              Flips the lights
+              Flip the lights
               <br />
               <span className="text-primary">off on AI.</span>
             </h1>

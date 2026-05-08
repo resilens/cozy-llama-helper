@@ -5,28 +5,28 @@ import { SiteHeader } from "@/components/SiteHeader";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "LocalAI Match — Find a private, local AI model for your device" },
+      { title: "LocalAI Match — A private, local AI for your device" },
       {
         name: "description",
         content:
-          "A friendly guide to picking a local llamafile that fits your device and tasks. Private, offline, sustainable.",
+          "Pick the smallest local llamafile that still nails your tasks. Private, offline, low-energy.",
       },
       { property: "og:title", content: "LocalAI Match" },
       {
         property: "og:description",
-        content: "Find a private, local AI model that fits your device and your tasks.",
+        content: "A private, local AI model that fits your device and your tasks.",
       },
     ],
   }),
   component: Landing,
 });
 
-function Pillar({ emoji, title, body }: { emoji: string; title: string; body: string }) {
+function Pillar({ num, title, body }: { num: string; title: string; body: string }) {
   return (
-    <div className="rounded-xl border border-border bg-card p-5">
-      <div className="text-2xl">{emoji}</div>
-      <h3 className="mt-2 text-base font-semibold text-foreground">{title}</h3>
-      <p className="mt-1 text-sm text-muted-foreground">{body}</p>
+    <div className="border-t-2 border-foreground pt-4">
+      <div className="font-mono text-xs text-muted-foreground">{num}</div>
+      <h3 className="mt-2 text-lg font-bold uppercase tracking-tight text-foreground">{title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-foreground">{body}</p>
     </div>
   );
 }
@@ -35,46 +35,129 @@ function Landing() {
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
-      <main className="mx-auto max-w-4xl px-4 py-12">
-        <section className="text-center">
-          <span className="inline-block rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground">
-            No accounts. No cloud. No tracking.
-          </span>
-          <h1 className="mt-6 text-5xl font-semibold tracking-tight text-foreground md:text-6xl lg:text-7xl">
-            An AI you can <span className="text-primary">put in the trash</span>.
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
-            No subscription. No data center burning megawatts on your behalf. Just a single file on your
-            laptop — drag it to the bin the day you're done. We'll help you pick the smallest model that
-            still nails your tasks.
-          </p>
-          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <Link
-              to="/use-case"
-              className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-base font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
-            >
-              Get started →
-            </Link>
-            <span className="text-xs text-muted-foreground">Takes about 2 minutes.</span>
+      <main className="mx-auto max-w-6xl px-6 py-16">
+        {/* Manifesto / hero */}
+        <section className="grid grid-cols-12 gap-6">
+          <div className="col-span-12 md:col-span-2">
+            <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+              No. 01
+            </div>
+            <div className="mt-2 h-2 w-12 bg-primary" aria-hidden />
+          </div>
+          <div className="col-span-12 md:col-span-10">
+            <p className="font-mono text-xs uppercase tracking-widest text-primary">
+              A manifesto for small models
+            </p>
+            <h1 className="mt-4 text-5xl font-bold leading-[0.95] tracking-tight text-foreground md:text-7xl lg:text-8xl">
+              An AI you can
+              <br />
+              <span className="text-primary">put in the trash.</span>
+            </h1>
+            <div className="mt-8 grid grid-cols-12 gap-6">
+              <p className="col-span-12 text-base leading-relaxed text-foreground md:col-span-7 md:text-lg">
+                No subscription. No data centre burning megawatts on your behalf. Just one file on
+                your laptop — drag it to the bin the day you are done. We help you pick the
+                smallest model that still nails your tasks.
+              </p>
+              <div className="col-span-12 md:col-span-5">
+                <Link
+                  to="/use-case"
+                  className="inline-flex w-full items-center justify-between border-2 border-foreground bg-foreground px-6 py-4 text-base font-bold uppercase tracking-widest text-background transition-colors hover:bg-primary hover:border-primary"
+                >
+                  <span>Begin</span>
+                  <span aria-hidden>→</span>
+                </Link>
+                <p className="mt-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                  ~ 2 minutes / 5 steps
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <Pillar emoji="🔒" title="Private by design" body="Your conversations never leave your computer." />
-          <Pillar emoji="🌱" title="Sustainable" body="Smaller models use less energy. We help you pick one that's just right." />
-          <Pillar emoji="✈️" title="Works offline" body="Once installed, it runs on a plane, on the train, anywhere." />
-          <Pillar emoji="🧰" title="Yours to control" body="Open-source models you own, no monthly fees." />
+        {/* Rule */}
+        <div className="mt-16 h-0.5 w-full bg-foreground" />
+
+        {/* Four principles */}
+        <section className="mt-12 grid grid-cols-12 gap-6">
+          <div className="col-span-12 md:col-span-2">
+            <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+              No. 02
+            </div>
+            <h2 className="mt-2 text-sm font-bold uppercase tracking-tight text-foreground">
+              Principles
+            </h2>
+          </div>
+          <div className="col-span-12 grid gap-6 md:col-span-10 md:grid-cols-4">
+            <Pillar
+              num="01"
+              title="Private"
+              body="Your conversations never leave your computer."
+            />
+            <Pillar
+              num="02"
+              title="Sustainable"
+              body="Smaller models use less energy. We pick one that is just right."
+            />
+            <Pillar
+              num="03"
+              title="Offline"
+              body="Once installed, it runs on a plane, a train, anywhere."
+            />
+            <Pillar
+              num="04"
+              title="Owned"
+              body="Open-source models you keep. No monthly fees."
+            />
+          </div>
         </section>
 
-        <section className="mt-16 rounded-2xl border border-border bg-card p-6 md:p-8">
-          <h2 className="text-xl font-semibold text-foreground">Why smaller is often enough</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            The biggest cloud AI models use a huge amount of energy and need to send your data to a
-            company's servers. For most everyday tasks — writing emails, summarizing text, brainstorming —
-            a small model running on your laptop is fast, private, and uses a fraction of the resources.
-            We default to the smallest model that still does your job well.
-          </p>
+        {/* Rule */}
+        <div className="mt-16 h-0.5 w-full bg-foreground" />
+
+        {/* Argument */}
+        <section className="mt-12 grid grid-cols-12 gap-6">
+          <div className="col-span-12 md:col-span-2">
+            <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+              No. 03
+            </div>
+            <h2 className="mt-2 text-sm font-bold uppercase tracking-tight text-foreground">
+              Why small
+            </h2>
+          </div>
+          <div className="col-span-12 md:col-span-10">
+            <p className="text-2xl font-medium leading-snug tracking-tight text-foreground md:text-3xl">
+              The largest cloud models burn vast amounts of energy and ship your data to a company's
+              servers. For most everyday tasks — writing, summarising, brainstorming — a small
+              model on your laptop is faster, more private, and uses a fraction of the resources.
+            </p>
+            <p className="mt-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+              Default: the smallest model that still does the job.
+            </p>
+          </div>
         </section>
+
+        {/* Colophon */}
+        <footer className="mt-24 border-t-2 border-foreground pt-6">
+          <div className="grid grid-cols-12 gap-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+            <div className="col-span-6 md:col-span-3">
+              <div className="text-foreground">Edition</div>
+              <div className="mt-1">Climate Week / Hackathon</div>
+            </div>
+            <div className="col-span-6 md:col-span-3">
+              <div className="text-foreground">Year</div>
+              <div className="mt-1">MMXXVI</div>
+            </div>
+            <div className="col-span-6 md:col-span-3">
+              <div className="text-foreground">Runtime</div>
+              <div className="mt-1">llamafile / local</div>
+            </div>
+            <div className="col-span-6 md:col-span-3">
+              <div className="text-foreground">Tracking</div>
+              <div className="mt-1">None</div>
+            </div>
+          </div>
+        </footer>
       </main>
     </div>
   );

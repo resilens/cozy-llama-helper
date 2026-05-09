@@ -55,7 +55,7 @@ function Landing() {
                 This is a friendly guide to <a href="https://www.mozilla.ai/open-tools/llamafile" target="_blank">Llamafiles</a>. 
                 Tell us what you'd like to do, and we'll
                 suggest the smallest local AI model that still 
-                <a href="/documentation">does the job</a> 
+                <Link to="/documentation" className="underline-offset-4 hover:underline">does the job</Link> 
                 — no subscription, no data centre, no tracking. 
                 When you're done, you can simply <b>switch it off</b>.
               </p>

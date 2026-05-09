@@ -57,20 +57,20 @@ const DocumentationIndexRoute = DocumentationIndexRouteImport.update({
 } as any)
 const DocumentationThunderbirdRoute =
   DocumentationThunderbirdRouteImport.update({
-    id: '/thunderbird',
-    path: '/thunderbird',
-    getParentRoute: () => DocumentationRoute,
+    id: '/documentation/thunderbird',
+    path: '/documentation/thunderbird',
+    getParentRoute: () => rootRouteImport,
   } as any)
 const DocumentationLibreofficeRoute =
   DocumentationLibreofficeRouteImport.update({
-    id: '/libreoffice',
-    path: '/libreoffice',
-    getParentRoute: () => DocumentationRoute,
+    id: '/documentation/libreoffice',
+    path: '/documentation/libreoffice',
+    getParentRoute: () => rootRouteImport,
   } as any)
 const DocumentationInkscapeRoute = DocumentationInkscapeRouteImport.update({
-  id: '/inkscape',
-  path: '/inkscape',
-  getParentRoute: () => DocumentationRoute,
+  id: '/documentation/inkscape',
+  path: '/documentation/inkscape',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -156,6 +156,9 @@ export interface RootRouteChildren {
   RecommendationRoute: typeof RecommendationRoute
   SetupRoute: typeof SetupRoute
   UseCaseRoute: typeof UseCaseRoute
+  DocumentationInkscapeRoute: typeof DocumentationInkscapeRoute
+  DocumentationLibreofficeRoute: typeof DocumentationLibreofficeRoute
+  DocumentationThunderbirdRoute: typeof DocumentationThunderbirdRoute
   DocumentationIndexRoute: typeof DocumentationIndexRoute
 }
 
@@ -212,24 +215,24 @@ declare module '@tanstack/react-router' {
     }
     '/documentation/thunderbird': {
       id: '/documentation/thunderbird'
-      path: '/thunderbird'
+      path: '/documentation/thunderbird'
       fullPath: '/documentation/thunderbird'
       preLoaderRoute: typeof DocumentationThunderbirdRouteImport
-      parentRoute: typeof DocumentationRoute
+      parentRoute: typeof rootRouteImport
     }
     '/documentation/libreoffice': {
       id: '/documentation/libreoffice'
-      path: '/libreoffice'
+      path: '/documentation/libreoffice'
       fullPath: '/documentation/libreoffice'
       preLoaderRoute: typeof DocumentationLibreofficeRouteImport
-      parentRoute: typeof DocumentationRoute
+      parentRoute: typeof rootRouteImport
     }
     '/documentation/inkscape': {
       id: '/documentation/inkscape'
-      path: '/inkscape'
+      path: '/documentation/inkscape'
       fullPath: '/documentation/inkscape'
       preLoaderRoute: typeof DocumentationInkscapeRouteImport
-      parentRoute: typeof DocumentationRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -241,18 +244,11 @@ const rootRouteChildren: RootRouteChildren = {
   RecommendationRoute: RecommendationRoute,
   SetupRoute: SetupRoute,
   UseCaseRoute: UseCaseRoute,
+  DocumentationInkscapeRoute: DocumentationInkscapeRoute,
+  DocumentationLibreofficeRoute: DocumentationLibreofficeRoute,
+  DocumentationThunderbirdRoute: DocumentationThunderbirdRoute,
   DocumentationIndexRoute: DocumentationIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

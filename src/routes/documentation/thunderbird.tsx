@@ -104,6 +104,13 @@ function ThunderbirdPage() {
             <div className="font-mono text-xs tracking-wide text-muted-foreground">Setup</div>
           </div>
           <div className="col-span-12 md:col-span-10">
+            <p className="mb-6 rounded-md border border-foreground/20 bg-foreground/5 p-4 text-sm text-muted-foreground">
+              These steps assume you've already picked a model and started llamafile by following the{" "}
+              <Link to="/use-case" className="text-foreground underline-offset-4 hover:text-primary hover:underline">
+                guided setup
+              </Link>{" "}
+              in this web app.
+            </p>
             <ol className="space-y-6">
               <li className="grid grid-cols-12 gap-6">
                 <div className="col-span-12 font-mono text-xs text-foreground md:col-span-2">01</div>

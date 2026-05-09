@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { StepProgress } from "@/components/StepProgress";
+import { MobileNotice } from "@/components/MobileBlock";
 import { useAppState } from "@/lib/app-state";
 import { detectDevice } from "@/lib/device";
 import { resolveTier, TIER_DESCRIPTIONS, type DeviceSpecs } from "@/lib/tiers";

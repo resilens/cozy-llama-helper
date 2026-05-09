@@ -56,6 +56,40 @@ const BUNDLES: { id: string; label: string; description: string; emoji: string; 
   },
 ];
 
+function FreeTextHint({ text }: { text: string }) {
+  const result = useMemo(() => freeTextWeights(text), [text]);
+  if (!text.trim()) return null;
+  if (result.fallback) {
+    return (
+      <p className="mt-2 text-xs text-muted-foreground">
+        No strong signal yet — we'll lean on{" "}
+        <span className="text-foreground">writing</span> &amp;{" "}
+        <span className="text-foreground">reasoning</span> by default.
+      </p>
+    );
+  }
+  const allTerms = result.matched.flatMap((m) => m.terms);
+  return (
+    <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
+      <span>We read this as:</span>
+      {result.matched.map((m) => (
+        <span
+          key={m.capability}
+          className="inline-flex items-center rounded-full border border-primary/30 bg-primary/5 px-2 py-0.5 font-medium text-foreground"
+        >
+          {CAPABILITY_LABELS[m.capability]}
+        </span>
+      ))}
+      {allTerms.length > 0 && (
+        <span className="text-muted-foreground">
+          (from {allTerms.slice(0, 6).map((t) => `"${t}"`).join(", ")}
+          {allTerms.length > 6 ? "…" : ""})
+        </span>
+      )}
+    </div>
+  );
+}
+
 function UseCasePage() {
   const navigate = useNavigate();
   const { state, update, hydrated } = useAppState();

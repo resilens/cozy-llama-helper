@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import logo from "@/assets/simplon-off-logo.png";
+import logo from "@/assets/simplon-off-logo-64.webp";
 
 export function SiteHeader() {
   return (

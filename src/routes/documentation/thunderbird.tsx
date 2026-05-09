@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
-import logo from "@/assets/simplon-off-logo.png";
+import logo from "@/assets/simplon-off-logo-64.webp";
 import thunder1 from "@/assets/thunderai-1.jpg";
 import thunder2 from "@/assets/thunderai-2.png";
 import thunder3 from "@/assets/thunderai-3.png";

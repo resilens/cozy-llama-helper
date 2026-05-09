@@ -1,6 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
-import logo from "@/assets/simplon-off-logo.png";
+import logo from "@/assets/simplon-off-logo-64.webp";
 
 export const Route = createFileRoute("/about")({
   head: () => ({

@@ -62,6 +62,10 @@ function DevicePage() {
           Browsers only share rough info. We've made our best guesses — please confirm or adjust.
         </p>
 
+        <div className="mt-4">
+          <MobileNotice />
+        </div>
+
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           <div className="rounded-xl border border-border bg-card p-5">
             <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Auto-detected</div>

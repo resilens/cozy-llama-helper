@@ -8,7 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 
-import { MobileBlock } from "../components/MobileBlock";
+
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -118,9 +118,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <MobileBlock>
-        <Outlet />
-      </MobileBlock>
+      <Outlet />
     </QueryClientProvider>
   );
 }

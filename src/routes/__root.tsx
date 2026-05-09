@@ -118,9 +118,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <MobileBlock>
-        <Outlet />
-      </MobileBlock>
+      <Outlet />
     </QueryClientProvider>
   );
 }

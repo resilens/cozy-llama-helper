@@ -142,7 +142,9 @@ function Landing() {
           <div className="col-span-12 md:col-span-2">
             <div className="font-mono text-xs tracking-wide text-muted-foreground">No. 04</div>
             <h2 className="mt-2 text-sm font-semibold tracking-tight text-foreground">
-              Workflows
+              <Link to="/documentation" className="underline-offset-4 hover:text-primary hover:underline">
+                Workflows
+              </Link>
             </h2>
           </div>
           <div className="col-span-12 md:col-span-10">

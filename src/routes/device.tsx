@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { StepProgress } from "@/components/StepProgress";
+import { MobileNotice } from "@/components/MobileBlock";
 import { useAppState } from "@/lib/app-state";
 import { detectDevice } from "@/lib/device";
 import { resolveTier, TIER_DESCRIPTIONS, type DeviceSpecs } from "@/lib/tiers";
@@ -60,6 +61,10 @@ function DevicePage() {
         <p className="mt-2 text-sm text-muted-foreground">
           Browsers only share rough info. We've made our best guesses — please confirm or adjust.
         </p>
+
+        <div className="mt-4">
+          <MobileNotice />
+        </div>
 
         <div className="mt-8 grid gap-4 md:grid-cols-2">
           <div className="rounded-xl border border-border bg-card p-5">

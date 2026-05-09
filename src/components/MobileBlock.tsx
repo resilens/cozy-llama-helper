@@ -33,8 +33,8 @@ export function MobileNotice() {
         : "Get PocketPal AI on GitHub";
 
   return (
-    <div className="border-b border-accent bg-accent/40">
-      <div className="mx-auto flex max-w-4xl flex-col gap-2 px-4 py-3 text-sm text-accent-foreground sm:flex-row sm:items-center sm:justify-between">
+    <div className="rounded-xl border border-accent bg-accent/40 p-4 text-sm text-accent-foreground">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
         <p>
           <strong>Heads up:</strong> llamafile is desktop-only. On mobile, try{" "}
           <a

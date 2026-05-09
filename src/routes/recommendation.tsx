@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { StepProgress } from "@/components/StepProgress";
-import { MobileNotice } from "@/components/MobileBlock";
+
 import { useAppState } from "@/lib/app-state";
 import { resolveTier } from "@/lib/tiers";
 import { recommend, type Scored } from "@/lib/recommender";
@@ -108,7 +108,6 @@ function RecommendationPage() {
     return (
       <div className="min-h-screen bg-background">
         <SiteHeader />
-        <MobileNotice />
         <StepProgress current={3} />
         <main className="mx-auto max-w-4xl px-4 py-12 text-center text-muted-foreground">
           Calculating…
@@ -126,7 +125,7 @@ function RecommendationPage() {
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
-      <MobileNotice />
+      
       <StepProgress current={3} />
       <main className="mx-auto max-w-4xl px-4 py-8">
         <h1 className="text-2xl font-semibold text-foreground md:text-3xl">Your match</h1>

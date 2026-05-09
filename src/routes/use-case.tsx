@@ -1,8 +1,14 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { StepProgress } from "@/components/StepProgress";
-import { USE_CASES, USE_CASE_GROUPS, PRIORITIES } from "@/lib/use-cases";
+import {
+  USE_CASES,
+  USE_CASE_GROUPS,
+  PRIORITIES,
+  freeTextWeights,
+  CAPABILITY_LABELS,
+} from "@/lib/use-cases";
 import { useAppState } from "@/lib/app-state";
 
 export const Route = createFileRoute("/use-case")({
@@ -49,6 +55,40 @@ const BUNDLES: { id: string; label: string; description: string; emoji: string; 
     ids: ["story", "recipes", "travel", "journal", "gaming"],
   },
 ];
+
+function FreeTextHint({ text }: { text: string }) {
+  const result = useMemo(() => freeTextWeights(text), [text]);
+  if (!text.trim()) return null;
+  if (result.fallback) {
+    return (
+      <p className="mt-2 text-xs text-muted-foreground">
+        No strong signal yet — we'll lean on{" "}
+        <span className="text-foreground">writing</span> &amp;{" "}
+        <span className="text-foreground">reasoning</span> by default.
+      </p>
+    );
+  }
+  const allTerms = result.matched.flatMap((m) => m.terms);
+  return (
+    <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
+      <span>We read this as:</span>
+      {result.matched.map((m) => (
+        <span
+          key={m.capability}
+          className="inline-flex items-center rounded-full border border-primary/30 bg-primary/5 px-2 py-0.5 font-medium text-foreground"
+        >
+          {CAPABILITY_LABELS[m.capability]}
+        </span>
+      ))}
+      {allTerms.length > 0 && (
+        <span className="text-muted-foreground">
+          (from {allTerms.slice(0, 6).map((t) => `"${t}"`).join(", ")}
+          {allTerms.length > 6 ? "…" : ""})
+        </span>
+      )}
+    </div>
+  );
+}
 
 function UseCasePage() {
   const navigate = useNavigate();
@@ -129,6 +169,7 @@ function UseCasePage() {
             rows={2}
             className="mt-2 w-full border border-foreground/20 bg-card p-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           />
+          <FreeTextHint text={state.freeText} />
         </div>
 
         {/* Browse-all disclosure — hidden by default */}

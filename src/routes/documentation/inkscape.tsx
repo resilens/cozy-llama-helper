@@ -33,14 +33,6 @@ function FeatureCard({ title, children }: { title: string; children: React.React
   );
 }
 
-function CodeBlock({ code }: { code: string }) {
-  return (
-    <pre className="overflow-x-auto rounded-md border border-foreground/20 bg-foreground/5 p-4 font-mono text-xs leading-relaxed text-foreground">
-      {code}
-    </pre>
-  );
-}
-
 function InkscapePage() {
   return (
     <div className="min-h-screen bg-background">
@@ -112,27 +104,6 @@ function InkscapePage() {
               <li className="grid grid-cols-12 gap-6">
                 <div className="col-span-12 font-mono text-xs text-foreground md:col-span-2">01</div>
                 <div className="col-span-12 md:col-span-10">
-                  <h4 className="font-semibold text-foreground">Install image generation model</h4>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    For image tasks, use models like SDXL or Stable Diffusion via llamafile:
-                  </p>
-                  <CodeBlock code="curl -L -o sdxl.llamafile 'https://huggingface.co/jartine/lmsys-vicuna-7b-v1.5-GGUF/resolve/main/vicuna-7b.Q4_K_M.llamafile' && chmod +x sdxl.llamafile" />
-                </div>
-              </li>
-              <li className="grid grid-cols-12 gap-6">
-                <div className="col-span-12 font-mono text-xs text-foreground md:col-span-2">02</div>
-                <div className="col-span-12 md:col-span-10">
-                  <h4 className="font-semibold text-foreground">Start multimodal server</h4>
-                  <CodeBlock code="./sdxl.llamafile --mmproj ./mmproj-model-f16.gguf --parallel 4" />
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Some models require a multimodal projector file (.gguf). Adjust parallel workers
-                    based on your GPU/CPU capabilities.
-                  </p>
-                </div>
-              </li>
-              <li className="grid grid-cols-12 gap-6">
-                <div className="col-span-12 font-mono text-xs text-foreground md:col-span-2">03</div>
-                <div className="col-span-12 md:col-span-10">
                   <h4 className="font-semibold text-foreground">Set up Python backend</h4>
                   <p className="mt-2 text-sm text-muted-foreground">
                     Create a helper script to call the llama-server API and convert generated images
@@ -141,7 +112,7 @@ function InkscapePage() {
                 </div>
               </li>
               <li className="grid grid-cols-12 gap-6">
-                <div className="col-span-12 font-mono text-xs text-foreground md:col-span-2">04</div>
+                <div className="col-span-12 font-mono text-xs text-foreground md:col-span-2">02</div>
                 <div className="col-span-12 md:col-span-10">
                   <h4 className="font-semibold text-foreground">Import to Inkscape</h4>
                   <p className="mt-2 text-sm text-muted-foreground">

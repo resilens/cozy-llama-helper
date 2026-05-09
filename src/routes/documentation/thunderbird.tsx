@@ -139,13 +139,13 @@ function ThunderbirdPage() {
                   <h4 className="font-semibold text-foreground">Configure Thunderbird</h4>
                   <p className="mt-2 text-sm text-muted-foreground">
                     Add an extension - we tested <a href="https://micz.it/thunderbird-addon-thunderai/" target="_blank">TigerAI</a>
-                    <img src={thunder1} alt="" className="h-6 w-6" />
                   </p>
-                  <p>
+                  <img src={thunder1} alt="ThunderAI extension listing" className="mt-4 w-full max-w-2xl rounded-md border border-foreground/20" />
+                  <p className="mt-4 text-sm text-muted-foreground">
                     Configure it to use the "OpenAI compatible" local model, set the
                     API endpoint to point to localhost:8080.
-                    <img src={thunder2} alt="" className="h-6 w-6" />
                   </p>
+                  <img src={thunder2} alt="ThunderAI configuration screen" className="mt-4 w-full max-w-2xl rounded-md border border-foreground/20" />
                 </div>
               </li>
               <li className="grid grid-cols-12 gap-6">
@@ -155,10 +155,12 @@ function ThunderbirdPage() {
                   <p className="mt-2 text-sm text-muted-foreground">
                     Select an email thread and click the AI helper icon to summarize, or start a reply
                     and use suggestions as you type.
-                    <img src={thunder3} alt="" className="h-6 w-6" />
-                    <img src={thunder4} alt="" className="h-6 w-6" />
-                    <img src={thunder5} alt="" className="h-6 w-6" />
                   </p>
+                  <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                    <img src={thunder3} alt="Thunderbird AI helper in use" className="w-full rounded-md border border-foreground/20" />
+                    <img src={thunder4} alt="AI summary result" className="w-full rounded-md border border-foreground/20" />
+                    <img src={thunder5} alt="AI compose suggestions" className="w-full rounded-md border border-foreground/20 sm:col-span-2" />
+                  </div>
                 </div>
               </li>
             </ol>

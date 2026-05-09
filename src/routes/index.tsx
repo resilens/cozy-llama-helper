@@ -54,9 +54,9 @@ function Landing() {
               <p className="col-span-12 text-base leading-relaxed text-foreground md:col-span-7 md:text-lg">
                 This is a friendly guide to <a href="https://www.mozilla.ai/open-tools/llamafile" target="_blank">Llamafiles</a>. 
                 Tell us what you'd like to do, and we'll
-                suggest the smallest local AI model that still 
-                <Link to="/documentation" className="underline-offset-4 hover:underline">does the job</Link> 
-                — no subscription, no data centre, no tracking. 
+                suggest the smallest local AI model that still{" "}
+                <Link to="/documentation" className="underline-offset-4 hover:underline">does the job</Link>{" "}
+                — no subscription, no data centre, no tracking.
                 When you're done, you can simply <b>switch it off</b>.
               </p>
               <div className="col-span-12 md:col-span-5">

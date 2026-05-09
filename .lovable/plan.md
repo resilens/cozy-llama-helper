@@ -1,38 +1,62 @@
-## Diagnosis
+## Goal
 
-Two separate issues, one structural bug:
+Make the free-text input feel less mysterious by:
+1. Expanding the keyword heuristic so more natural phrasings hit a real capability.
+2. Showing the user — live, under the textarea — which capabilities their words triggered.
 
-**1. Navigation to `/documentation/<tool>` appears broken**
+## Changes
 
-`src/routes/documentation.tsx` declares route `/documentation`, and there are also child route files in `src/routes/documentation/` (`thunderbird.tsx`, `libreoffice.tsx`, `inkscape.tsx`). In TanStack Router's flat file convention this makes `documentation.tsx` the **parent layout** for those children.
+### 1. Expand `freeTextWeights` in `src/lib/use-cases.ts`
 
-Per the framework rule: *"If a parent route has children, its component MUST render `<Outlet />` or the child route matches but nothing appears on screen."*
+Refactor the implementation from inline regexes into a small declarative table so it stays readable as it grows. Add many more synonyms per capability and return the matched terms (for the UI hint) alongside the weights.
 
-The current `DocumentationIndex` component renders no `<Outlet />`, so visiting `/documentation/thunderbird` (or libreoffice/inkscape) matches the parent route, the child route also matches, but the child has nowhere to render — the user keeps seeing the cards index. That looks like "navigation doesn't work."
+New shape:
 
-**2. The landing page has no "No. 04 — Workflows" section**
+```ts
+export interface FreeTextMatch {
+  weights: Partial<Record<Capability, number>>;
+  matched: { capability: Capability; terms: string[] }[];
+}
 
-`src/routes/index.tsx` stops at `No. 03 — Why small`. There is no card linking to `/documentation`. The header has a "Workflows →" link but it's easy to miss.
+export function freeTextWeights(text: string): FreeTextMatch
+```
 
-## Fix
+Keep a thin compat wrapper or update the single caller in `src/lib/recommender.ts` to read `.weights`.
 
-### A. Restructure the documentation parent so children render
+Expanded keyword sets (rough draft — final list can grow during implementation):
 
-Rename `src/routes/documentation.tsx` → `src/routes/documentation.index.tsx`. Under flat routing this turns the file from a parent-layout route into a sibling leaf route that only matches `/documentation` exactly, so `/documentation/thunderbird` etc. resolve directly to their own files with no broken parent in the way. No code changes inside the file are needed.
+- **writing**: write, rewrite, edit, proofread, grammar, spelling, tone, email, message, letter, reply, draft, translate, translation, summarize, summary, paraphrase, blog, post, caption
+- **code**: code, coding, program, programming, script, bug, debug, refactor, regex, sql, query, terminal, shell, bash, function, api, html, css, javascript, typescript, python, rust, java
+- **structured**: diagram, mermaid, chart, table, json, yaml, csv, xml, schema, structure, structured, outline, format, list, bullet, organize, categorize, classify, extract, parse
+- **multimodal**: image, photo, picture, visual, screenshot, diagram (image sense), describe (when paired with image), alt text, caption (image), drawing, sketch, ocr
+- **creative**: story, novel, fiction, poem, poetry, lyrics, song, roleplay, character, brainstorm, idea, creative, fun, joke, recipe, cooking, travel, itinerary, gift, name, slogan, headline
+- **reasoning**: explain, why, how, reason, analyze, analysis, compare, evaluate, decide, study, learn, teach, tutor, eli5, math, logic, puzzle, plan, strategy, research, understand
 
-(Alternative: keep the file as a true layout — make its component a `<><SiteHeader /><Outlet /></>` shell and move the cards/content into a new `documentation.index.tsx`. More work, only worth it if we want a shared layout. Recommend the rename approach.)
+Matching: word-boundary regex per capability, not substring, so "scripture" doesn't match `script`. Track which terms matched for the UI.
 
-While we're here, also swap the raw `<a href="/documentation">` in `src/components/SiteHeader.tsx` and `src/routes/index.tsx` for TanStack `<Link to="/documentation">` so navigation stays client-side.
+Keep the empty-fallback behaviour (`writing + reasoning`) but mark it as `matched: []` so the UI can show "no specific signal — defaulting to writing & reasoning".
 
-### B. Add the "No. 04 — Workflows" section to the landing page
+### 2. Show a live hint under the textarea in `src/routes/use-case.tsx`
 
-In `src/routes/index.tsx`, after the `No. 03 — Why small` section and before the footer, add a new section using the same 12-column grid pattern:
+Below the `<textarea>` (after line 131), add a small hint that updates as the user types. Use existing tokens (`text-muted-foreground`, `text-foreground`, `border-foreground/15`).
 
-- Left col: `No. 04` label + small heading "Workflows".
-- Right col: short paragraph ("Once you have a model running, plug it into the apps you already use…") and three `Link` cards to `/documentation/thunderbird`, `/documentation/libreoffice`, `/documentation/inkscape` mirroring the existing card style on the documentation page.
+- Empty textarea → no hint (nothing to show).
+- Text with matches → "We read this as: **writing**, **reasoning** *(from "email", "grammar", "explain")*". Show the human-readable capability names mapped from `Capability` IDs (e.g. `writing` → "Writing", `multimodal` → "Image understanding"). Render capabilities as small pills.
+- Text with no keyword hits → muted line: "No strong signal — we'll lean on writing & reasoning by default."
 
-Use existing design tokens (`text-foreground`, `text-muted-foreground`, `border-foreground/20`, `text-primary`) — no new colors.
+Compute the hint with `useMemo(() => freeTextWeights(state.freeText), [state.freeText])` so it stays cheap.
 
-## Verification
+### 3. Tiny capability label map
 
-After the change, refresh `/documentation/thunderbird`, `/documentation/libreoffice`, `/documentation/inkscape` — each should render its own page with screenshots. The landing page should show a fourth section with three workflow cards.
+Add a `CAPABILITY_LABELS: Record<Capability, string>` next to `freeTextWeights` (or in `src/lib/models.ts` next to the `Capability` type) so both the hint UI and any future surface use the same friendly names.
+
+## Files touched
+
+- `src/lib/use-cases.ts` — expand keywords, return `{ weights, matched }`, add `CAPABILITY_LABELS` (or add it to `models.ts`).
+- `src/lib/recommender.ts` — update the one call site to read `.weights`.
+- `src/routes/use-case.tsx` — render the live hint below the textarea.
+
+## Out of scope
+
+- No change to the preset use-case buttons or the recommender's scoring logic itself.
+- No LLM call — still a local keyword heuristic.

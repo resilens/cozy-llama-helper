@@ -148,3 +148,15 @@
     color: var(--color-foreground);
   }
 }
+
+@layer base {
+  a:not([class]) {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+  a:not([class]):hover {
+    text-decoration-thickness: 2px;
+  }
+}

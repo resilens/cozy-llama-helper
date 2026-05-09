@@ -124,59 +124,58 @@ function RecommendationPage() {
   };
 
   return (
-    <MobileBlock>
-      <div className="min-h-screen bg-background">
-        <SiteHeader />
-        <StepProgress current={3} />
-        <main className="mx-auto max-w-4xl px-4 py-8">
-          <h1 className="text-2xl font-semibold text-foreground md:text-3xl">Your match</h1>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Picked for your <strong>{tier}</strong> device, your selected tasks, and the smallest model that
-            still does the job well.
-          </p>
+    <div className="min-h-screen bg-background">
+      <SiteHeader />
+      <MobileNotice />
+      <StepProgress current={3} />
+      <main className="mx-auto max-w-4xl px-4 py-8">
+        <h1 className="text-2xl font-semibold text-foreground md:text-3xl">Your match</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Picked for your <strong>{tier}</strong> device, your selected tasks, and the smallest model that
+          still does the job well.
+        </p>
 
-          {result.specialNotes.length > 0 && (
-            <div className="mt-6 space-y-2">
-              {result.specialNotes.map((n, i) => (
-                <div key={i} className="rounded-xl border border-accent bg-accent/40 p-4 text-sm text-accent-foreground">
-                  <strong>Heads up:</strong> {n}
-                </div>
+        {result.specialNotes.length > 0 && (
+          <div className="mt-6 space-y-2">
+            {result.specialNotes.map((n, i) => (
+              <div key={i} className="rounded-xl border border-accent bg-accent/40 p-4 text-sm text-accent-foreground">
+                <strong>Heads up:</strong> {n}
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className="mt-6">
+          <ModelCard scored={result.primary} kind="primary" onPick={() => pick(result.primary.model.id)} />
+        </div>
+
+        {result.alternatives.length > 0 && (
+          <section className="mt-10">
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Alternatives</h2>
+            <div className="mt-3 grid gap-4 md:grid-cols-2">
+              {result.alternatives.map((a) => (
+                <ModelCard key={a.model.id} scored={a} kind="alt" onPick={() => pick(a.model.id)} />
               ))}
             </div>
-          )}
+          </section>
+        )}
 
-          <div className="mt-6">
-            <ModelCard scored={result.primary} kind="primary" onPick={() => pick(result.primary.model.id)} />
-          </div>
+        <details className="mt-10 rounded-2xl border border-border bg-card p-5">
+          <summary className="cursor-pointer text-sm font-medium text-foreground">
+            Why smaller is often enough
+          </summary>
+          <p className="mt-3 text-sm text-muted-foreground">
+            Bigger models aren't automatically better. Smaller models start faster, use less energy, and
+            keep your data on your device. For everyday tasks like grammar, summarizing, or
+            brainstorming, a 1–4 GB model is usually indistinguishable from a giant one — and far kinder
+            to your battery and the planet.
+          </p>
+        </details>
 
-          {result.alternatives.length > 0 && (
-            <section className="mt-10">
-              <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Alternatives</h2>
-              <div className="mt-3 grid gap-4 md:grid-cols-2">
-                {result.alternatives.map((a) => (
-                  <ModelCard key={a.model.id} scored={a} kind="alt" onPick={() => pick(a.model.id)} />
-                ))}
-              </div>
-            </section>
-          )}
-
-          <details className="mt-10 rounded-2xl border border-border bg-card p-5">
-            <summary className="cursor-pointer text-sm font-medium text-foreground">
-              Why smaller is often enough
-            </summary>
-            <p className="mt-3 text-sm text-muted-foreground">
-              Bigger models aren't automatically better. Smaller models start faster, use less energy, and
-              keep your data on your device. For everyday tasks like grammar, summarizing, or
-              brainstorming, a 1–4 GB model is usually indistinguishable from a giant one — and far kinder
-              to your battery and the planet.
-            </p>
-          </details>
-
-          <div className="mt-10 flex items-center justify-between">
-            <Link to="/device" className="text-sm text-muted-foreground hover:text-foreground">← Back</Link>
-          </div>
-        </main>
-      </div>
-    </MobileBlock>
+        <div className="mt-10 flex items-center justify-between">
+          <Link to="/device" className="text-sm text-muted-foreground hover:text-foreground">← Back</Link>
+        </div>
+      </main>
+    </div>
   );
 }

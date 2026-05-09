@@ -110,26 +110,6 @@ function LibreOfficePage() {
               <li className="grid grid-cols-12 gap-6">
                 <div className="col-span-12 font-mono text-xs text-foreground md:col-span-2">01</div>
                 <div className="col-span-12 md:col-span-10">
-                  <h4 className="font-semibold text-foreground">Choose a suitable model</h4>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    For document processing, models like Mistral-7B or Phi-3 work well. Download as llamafile:
-                  </p>
-                  <CodeBlock code="curl -L -o mistral.llamafile 'https://huggingface.co/jartine/Meta-Llama-3-8B-GGUF/resolve/main/Meta-Llama-3-8B.Q4_K_M.llamafile' && chmod +x mistral.llamafile" />
-                </div>
-              </li>
-              <li className="grid grid-cols-12 gap-6">
-                <div className="col-span-12 font-mono text-xs text-foreground md:col-span-2">02</div>
-                <div className="col-span-12 md:col-span-10">
-                  <h4 className="font-semibold text-foreground">Start the AI server</h4>
-                  <CodeBlock code="./mistral.llamafile --server -c 4096 -a mistral --host localhost" />
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Server runs on port 8080. Adjust -c based on your available RAM.
-                  </p>
-                </div>
-              </li>
-              <li className="grid grid-cols-12 gap-6">
-                <div className="col-span-12 font-mono text-xs text-foreground md:col-span-2">03</div>
-                <div className="col-span-12 md:col-span-10">
                   <h4 className="font-semibold text-foreground">Install LibreOffice extension</h4>
                   <p className="mt-2 text-sm text-muted-foreground">
                     Use extensions like &quot;Chat Assistant&quot; or configure custom macro endpoint to
@@ -138,7 +118,7 @@ function LibreOfficePage() {
                 </div>
               </li>
               <li className="grid grid-cols-12 gap-6">
-                <div className="col-span-12 font-mono text-xs text-foreground md:col-span-2">04</div>
+                <div className="col-span-12 font-mono text-xs text-foreground md:col-span-2">02</div>
                 <div className="col-span-12 md:col-span-10">
                   <h4 className="font-semibold text-foreground">Use keyboard shortcuts</h4>
                   <p className="mt-2 text-sm text-muted-foreground">

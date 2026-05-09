@@ -11,12 +11,18 @@ export function SiteHeader() {
             Simplon Off
           </span>
         </Link>
-        <div className="col-span-3 hidden text-xs tracking-wide text-muted-foreground md:block">
+        <div className="col-span-2 hidden text-xs tracking-wide text-muted-foreground md:block">
           Private · Local · Sustainable
         </div>
-        <div className="col-span-6 flex items-center justify-end gap-3 md:col-span-3">
+        <div className="col-span-7 flex items-center justify-end gap-3 md:col-span-4">
           <a
-            href="https://github.com/Mozilla-Ocho/llamafile"
+            href="/documentation"
+            className="hidden text-xs tracking-wide text-foreground underline-offset-4 hover:underline sm:inline"
+          >
+            Workflows →
+          </a>
+          <a
+            href="https://www.mozilla.ai/open-tools/llamafile"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden text-xs tracking-wide text-foreground underline-offset-4 hover:underline sm:inline"

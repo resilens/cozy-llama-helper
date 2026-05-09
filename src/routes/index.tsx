@@ -52,9 +52,12 @@ function Landing() {
             </h1>
             <div className="mt-8 grid grid-cols-12 items-start gap-6">
               <p className="col-span-12 text-base leading-relaxed text-foreground md:col-span-7 md:text-lg">
-                Simplon Off is a friendly little guide. Tell us what you'd like to do, and we'll
-                suggest the smallest local AI model that still does the job — no subscription, no
-                data centre, no tracking. When you're done, you can simply switch it off.
+                This is a friendly guide to <a href="https://www.mozilla.ai/open-tools/llamafile" target="_blank">Llamafiles</a>. 
+                Tell us what you'd like to do, and we'll
+                suggest the smallest local AI model that still 
+                <a href="/documentation">does the job</a> 
+                — no subscription, no data centre, no tracking. 
+                When you're done, you can simply <b>switch it off</b>.
               </p>
               <div className="col-span-12 md:col-span-5">
                 <Link
@@ -151,9 +154,9 @@ function Landing() {
                 to="/about"
                 className="text-foreground underline-offset-4 hover:text-primary hover:underline"
               >
-                About
+                Learn more
               </Link>
-              <div className="mt-1">Fabio · Oleg · David · Stephan</div>
+              <p>This project is not affiliated with Mozilla.</p>
             </div>
           </div>
         </footer>

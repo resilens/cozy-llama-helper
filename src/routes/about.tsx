@@ -8,8 +8,7 @@ export const Route = createFileRoute("/about")({
       { title: "About — Simplon Off" },
       {
         name: "description",
-        content:
-          "Simplon Off was built during a GreenTech Hackathon by Fabio, Oleg, David and Stephan.",
+        content: "A small project about small AI, made at a GreenTech Hackathon.",
       },
       { property: "og:title", content: "About — Simplon Off" },
       {
@@ -38,7 +37,7 @@ function AboutPage() {
             </h1>
             <div className="mt-8 grid grid-cols-12 items-start gap-6">
               <p className="col-span-12 text-base leading-relaxed text-foreground md:col-span-7 md:text-lg">
-                Simplon Off was built in a weekend during a{" "}
+                <b>Simplon Off</b> was built in a day during a{" "}
                 <a
                   href="https://climateaction.dribdat.cc/event/3"
                   target="_blank"

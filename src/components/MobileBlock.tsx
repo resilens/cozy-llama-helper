@@ -33,28 +33,42 @@ export function MobileNotice() {
         : "Get PocketPal AI on GitHub";
 
   return (
-    <div className="rounded-xl border border-accent bg-accent/40 p-4 text-sm text-accent-foreground">
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-        <p>
-          <strong>Heads up:</strong> llamafile is desktop-only. On mobile, try{" "}
-          <a
-            href={storeUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="font-medium underline decoration-primary/40 underline-offset-4"
-          >
-            {storeLabel}
-          </a>
-          . You can keep exploring here too.
-        </p>
-        <button
-          type="button"
-          onClick={() => setDismissed(true)}
-          className="self-end text-xs text-muted-foreground hover:text-foreground sm:self-auto"
-          aria-label="Dismiss"
+    <div className="rounded-2xl border-2 border-destructive bg-destructive/10 p-5 text-destructive shadow-lg ring-2 ring-destructive/20">
+      <div className="flex items-start gap-3">
+        <span
+          aria-hidden
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-destructive text-base font-bold text-destructive-foreground"
         >
-          Dismiss
-        </button>
+          !
+        </span>
+        <div className="flex-1">
+          <h3 className="text-base font-bold uppercase tracking-wide">
+            Heads up — desktop only
+          </h3>
+          <p className="mt-1 text-sm text-foreground">
+            llamafile is built for desktop computers and won't run on this phone.
+            On mobile, install{" "}
+            <strong>PocketPal AI</strong> instead — a free, open-source assistant
+            that runs models fully on-device.
+          </p>
+          <div className="mt-3 flex flex-wrap items-center gap-3">
+            <a
+              href={storeUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center rounded-md bg-destructive px-4 py-2 text-sm font-semibold text-destructive-foreground transition-colors hover:bg-destructive/90"
+            >
+              {storeLabel}
+            </a>
+            <button
+              type="button"
+              onClick={() => setDismissed(true)}
+              className="text-xs font-medium text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+            >
+              Continue anyway
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

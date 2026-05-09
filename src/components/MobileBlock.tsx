@@ -71,6 +71,14 @@ export function MobileBlock({ children }: { children: React.ReactNode }) {
           </a>
           .
         </p>
+        <p className="mt-4 text-xs text-muted-foreground">
+          <a
+            href="/"
+            className="underline decoration-primary/40 underline-offset-4"
+          >
+            Back to homepage
+          </a>
+        </p>
       </div>
     </div>
   );

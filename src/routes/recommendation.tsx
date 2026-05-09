@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { StepProgress } from "@/components/StepProgress";
-import { MobileNotice } from "@/components/MobileBlock";
+
 import { useAppState } from "@/lib/app-state";
 import { resolveTier } from "@/lib/tiers";
 import { recommend, type Scored } from "@/lib/recommender";

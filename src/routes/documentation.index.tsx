@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import logo from "@/assets/simplon-off-logo.png";
 
-export const Route = createFileRoute("/documentation")({
+export const Route = createFileRoute("/documentation/")({
   head: () => ({
     meta: [
       { title: "Workflows — Simplon Off" },

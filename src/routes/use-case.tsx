@@ -1,8 +1,14 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { StepProgress } from "@/components/StepProgress";
-import { USE_CASES, USE_CASE_GROUPS, PRIORITIES } from "@/lib/use-cases";
+import {
+  USE_CASES,
+  USE_CASE_GROUPS,
+  PRIORITIES,
+  freeTextWeights,
+  CAPABILITY_LABELS,
+} from "@/lib/use-cases";
 import { useAppState } from "@/lib/app-state";
 
 export const Route = createFileRoute("/use-case")({
@@ -129,6 +135,7 @@ function UseCasePage() {
             rows={2}
             className="mt-2 w-full border border-foreground/20 bg-card p-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
           />
+          <FreeTextHint text={state.freeText} />
         </div>
 
         {/* Browse-all disclosure — hidden by default */}

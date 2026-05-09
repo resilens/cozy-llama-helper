@@ -106,13 +106,15 @@ function RecommendationPage() {
 
   if (!result) {
     return (
-      <div className="min-h-screen bg-background">
-        <SiteHeader />
-        <StepProgress current={3} />
-        <main className="mx-auto max-w-4xl px-4 py-12 text-center text-muted-foreground">
-          Calculating…
-        </main>
-      </div>
+      <MobileBlock>
+        <div className="min-h-screen bg-background">
+          <SiteHeader />
+          <StepProgress current={3} />
+          <main className="mx-auto max-w-4xl px-4 py-12 text-center text-muted-foreground">
+            Calculating…
+          </main>
+        </div>
+      </MobileBlock>
     );
   }
 

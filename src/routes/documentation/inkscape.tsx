@@ -33,14 +33,6 @@ function FeatureCard({ title, children }: { title: string; children: React.React
   );
 }
 
-function CodeBlock({ code }: { code: string }) {
-  return (
-    <pre className="overflow-x-auto rounded-md border border-foreground/20 bg-foreground/5 p-4 font-mono text-xs leading-relaxed text-foreground">
-      {code}
-    </pre>
-  );
-}
-
 function InkscapePage() {
   return (
     <div className="min-h-screen bg-background">

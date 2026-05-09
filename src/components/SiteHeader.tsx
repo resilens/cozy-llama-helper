@@ -15,12 +15,6 @@ export function SiteHeader() {
           Private · Local · Sustainable
         </div>
         <div className="col-span-7 flex items-center justify-end gap-3 md:col-span-4">
-          <Link
-            to="/documentation"
-            className="hidden text-xs tracking-wide text-foreground underline-offset-4 hover:underline sm:inline"
-          >
-            Workflows →
-          </Link>
           <a
             href="https://www.mozilla.ai/open-tools/llamafile"
             target="_blank"

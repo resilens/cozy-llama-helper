@@ -52,12 +52,12 @@ function Landing() {
             </h1>
             <div className="mt-8 grid grid-cols-12 items-start gap-6">
               <p className="col-span-12 text-base leading-relaxed text-foreground md:col-span-7 md:text-lg">
-                This is a friendly guide to <a href="https://www.mozilla.ai/open-tools/llamafile" target="_blank">Llamafiles</a>. 
-                Tell us what you'd like to do, and we'll
-                suggest the smallest local AI model that still{" "}
+                A friendly guide to <a href="https://www.mozilla.ai/open-tools/llamafile" target="_blank">Llamafiles</a> —
+                open-source AI models packaged as a single file that runs on your laptop, offline.
+                Tell us what you'd like to do, and we'll suggest the smallest one that still{" "}
                 <Link to="/documentation" className="underline-offset-4 hover:underline">does the job</Link>{" "}
                 — no subscription, no data centre, no tracking.
-                When you're done, you can simply <b>switch it off</b>.
+                When you're done, simply <b>switch it off</b>.
               </p>
               <div className="col-span-12 md:col-span-5">
                 <Link

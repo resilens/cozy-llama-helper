@@ -33,7 +33,7 @@ function aggregateWeights(input: RecommendInput): Partial<Record<Capability, num
     }
   }
   if (input.freeText && input.freeText.trim()) {
-    for (const [cap, w] of Object.entries(freeTextWeights(input.freeText))) {
+    for (const [cap, w] of Object.entries(freeTextWeights(input.freeText).weights)) {
       add(cap as Capability, w as number);
     }
   }

@@ -70,22 +70,116 @@ export function useCaseById(id: string) {
   return USE_CASES.find((u) => u.id === id);
 }
 
-// Map a free-text "something else" to capability weights via simple keyword heuristics.
-export function freeTextWeights(text: string): Partial<Record<Capability, number>> {
-  const t = text.toLowerCase();
-  const w: Partial<Record<Capability, number>> = {};
-  const add = (c: Capability, n: number) => (w[c] = (w[c] ?? 0) + n);
-  if (/code|program|script|bug|regex|sql/.test(t)) add("code", 3);
-  if (/image|photo|picture|visual/.test(t)) add("multimodal", 4);
-  if (/diagram|chart|table|json|structur|outline|format/.test(t)) add("structured", 3);
-  if (/write|rewrite|email|grammar|translat|summar/.test(t)) add("writing", 3);
-  if (/story|creative|roleplay|brainstorm|idea|poem|fun/.test(t)) add("creative", 3);
-  if (/explain|reason|analy|study|learn|why|how/.test(t)) add("reasoning", 3);
-  if (Object.keys(w).length === 0) {
-    add("writing", 2);
-    add("reasoning", 2);
+// Friendly capability labels for surfaces that show capabilities to users.
+export const CAPABILITY_LABELS: Record<Capability, string> = {
+  writing: "Writing",
+  structured: "Structured output",
+  code: "Code",
+  multimodal: "Image understanding",
+  reasoning: "Reasoning",
+  creative: "Creative",
+};
+
+// Keyword sets per capability. Matched as whole words (\b…\b).
+const KEYWORDS: { capability: Capability; weight: number; terms: string[] }[] = [
+  {
+    capability: "writing",
+    weight: 3,
+    terms: [
+      "write", "writing", "rewrite", "edit", "editing", "proofread", "grammar",
+      "spelling", "spell", "tone", "email", "emails", "message", "messages",
+      "letter", "reply", "replies", "draft", "drafting", "translate", "translation",
+      "summarize", "summarise", "summary", "summaries", "paraphrase",
+      "blog", "post", "caption",
+    ],
+  },
+  {
+    capability: "code",
+    weight: 3,
+    terms: [
+      "code", "coding", "program", "programming", "script", "scripts", "scripting",
+      "bug", "bugs", "debug", "debugging", "refactor", "regex", "sql", "query",
+      "queries", "terminal", "shell", "bash", "function", "functions", "api",
+      "html", "css", "javascript", "typescript", "python", "rust", "java", "go",
+    ],
+  },
+  {
+    capability: "structured",
+    weight: 3,
+    terms: [
+      "diagram", "mermaid", "chart", "charts", "table", "tables", "json", "yaml",
+      "csv", "xml", "schema", "structure", "structured", "outline", "format",
+      "list", "lists", "bullet", "bullets", "organize", "organise", "categorize",
+      "categorise", "classify", "extract", "parse",
+    ],
+  },
+  {
+    capability: "multimodal",
+    weight: 4,
+    terms: [
+      "image", "images", "photo", "photos", "picture", "pictures", "visual",
+      "visuals", "screenshot", "screenshots", "drawing", "sketch", "ocr",
+      "alt-text", "alt",
+    ],
+  },
+  {
+    capability: "creative",
+    weight: 3,
+    terms: [
+      "story", "stories", "novel", "fiction", "poem", "poetry", "lyrics", "song",
+      "songs", "roleplay", "character", "characters", "brainstorm", "idea",
+      "ideas", "creative", "fun", "joke", "jokes", "recipe", "recipes",
+      "cooking", "travel", "itinerary", "gift", "gifts", "name", "names",
+      "slogan", "headline",
+    ],
+  },
+  {
+    capability: "reasoning",
+    weight: 3,
+    terms: [
+      "explain", "why", "how", "reason", "reasoning", "analyze", "analyse",
+      "analysis", "compare", "evaluate", "decide", "study", "learn", "teach",
+      "tutor", "eli5", "math", "logic", "puzzle", "plan", "strategy", "research",
+      "understand",
+    ],
+  },
+];
+
+export interface FreeTextMatch {
+  weights: Partial<Record<Capability, number>>;
+  matched: { capability: Capability; terms: string[] }[];
+  fallback: boolean;
+}
+
+function escapeRegex(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+// Map free-text "something else" to capability weights via whole-word keyword matching.
+export function freeTextWeights(text: string): FreeTextMatch {
+  const weights: Partial<Record<Capability, number>> = {};
+  const matched: { capability: Capability; terms: string[] }[] = [];
+  const lower = text.toLowerCase();
+
+  for (const group of KEYWORDS) {
+    const hits: string[] = [];
+    for (const term of group.terms) {
+      const re = new RegExp(`\\b${escapeRegex(term)}\\b`, "i");
+      if (re.test(lower)) hits.push(term);
+    }
+    if (hits.length > 0) {
+      weights[group.capability] = (weights[group.capability] ?? 0) + group.weight;
+      matched.push({ capability: group.capability, terms: hits });
+    }
   }
-  return w;
+
+  if (matched.length === 0 && text.trim().length > 0) {
+    weights.writing = 2;
+    weights.reasoning = 2;
+    return { weights, matched: [], fallback: true };
+  }
+
+  return { weights, matched, fallback: false };
 }
 
 export const PRIORITIES: { id: Priority; label: string; description: string; emoji: string }[] = [

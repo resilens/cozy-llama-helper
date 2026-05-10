@@ -137,67 +137,10 @@ function Landing() {
         {/* Rule */}
         <div className="mt-16 h-px w-full bg-foreground/20" />
 
-        {/* Workflows */}
-        <section className="mt-12 grid grid-cols-12 gap-6">
-          <div className="col-span-12 md:col-span-2">
-            <div className="font-mono text-xs tracking-wide text-muted-foreground">No. 04</div>
-            <h2 className="mt-2 text-sm font-semibold tracking-tight text-foreground">
-              <Link to="/documentation" className="underline-offset-4 hover:text-primary hover:underline">
-                Workflows
-              </Link>
-            </h2>
-          </div>
-          <div className="col-span-12 md:col-span-10">
-            <p className="text-base leading-relaxed text-foreground md:text-lg">
-              Once your model is running, plug it into the apps you already use. Private,
-              offline, and instant — no cloud round-trip.
-            </p>
-            <div className="mt-8 grid gap-6 md:grid-cols-3">
-              {[
-                {
-                  to: "/documentation/thunderbird" as const,
-                  title: "Thunderbird",
-                  body: "Summarise and draft email without leaving your inbox.",
-                },
-                {
-                  to: "/documentation/libreoffice" as const,
-                  title: "LibreOffice",
-                  body: "Typing help, summaries, and smart suggestions in Writer.",
-                },
-                {
-                  to: "/documentation/inkscape" as const,
-                  title: "Inkscape",
-                  body: "Generate images and descriptions inside your canvas.",
-                },
-              ].map((card) => (
-                <Link
-                  key={card.to}
-                  to={card.to}
-                  className="group flex flex-col gap-2 border border-foreground/20 bg-background p-6 transition-colors hover:border-primary"
-                >
-                  <div className="font-mono text-xs tracking-wide text-muted-foreground">
-                    No. 04
-                  </div>
-                  <h3 className="text-lg font-semibold tracking-tight text-foreground group-hover:text-primary">
-                    {card.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{card.body}</p>
-                  <span className="mt-auto pt-2 font-mono text-xs text-muted-foreground group-hover:text-primary">
-                    Read guide →
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Rule */}
-        <div className="mt-16 h-px w-full bg-foreground/20" />
-
         {/* Offline guide */}
         <section className="mt-12 grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-2">
-            <div className="font-mono text-xs tracking-wide text-muted-foreground">No. 05</div>
+            <div className="font-mono text-xs tracking-wide text-muted-foreground">No. 04</div>
             <h2 className="mt-2 text-sm font-semibold tracking-tight text-foreground">
               Coming soon
             </h2>

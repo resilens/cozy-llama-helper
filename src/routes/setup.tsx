@@ -180,6 +180,61 @@ function SetupPage() {
           </p>
         </section>
 
+        {/* Next step: workflows */}
+        <section className="mt-12">
+          <div className="flex items-baseline justify-between gap-4">
+            <h2 className="text-lg font-semibold tracking-tight text-foreground">
+              Next → plug it into your apps
+            </h2>
+            <Link
+              to="/documentation"
+              className="font-mono text-xs tracking-wide text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
+            >
+              All workflows →
+            </Link>
+          </div>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Once your model is running, connect it to the apps you already use. Private,
+            offline, and instant — no cloud round-trip.
+          </p>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {[
+              {
+                to: "/documentation/thunderbird" as const,
+                title: "Thunderbird",
+                body: "Summarise and draft email without leaving your inbox.",
+              },
+              {
+                to: "/documentation/libreoffice" as const,
+                title: "LibreOffice",
+                body: "Typing help, summaries, and smart suggestions in Writer.",
+              },
+              {
+                to: "/documentation/inkscape" as const,
+                title: "Inkscape",
+                body: "Generate images and descriptions inside your canvas.",
+              },
+            ].map((card) => (
+              <Link
+                key={card.to}
+                to={card.to}
+                className="group flex flex-col gap-2 border border-foreground/20 bg-background p-5 transition-colors hover:border-primary"
+              >
+                <div className="font-mono text-xs tracking-wide text-muted-foreground">
+                  Workflow
+                </div>
+                <h3 className="text-base font-semibold tracking-tight text-foreground group-hover:text-primary">
+                  {card.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{card.body}</p>
+                <span className="mt-auto pt-2 font-mono text-xs text-muted-foreground group-hover:text-primary">
+                  Read guide →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
         <div className="mt-10 flex items-center justify-between">
           <Link to="/recommendation" className="text-sm text-muted-foreground hover:text-foreground">← Back</Link>
           <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">Start over</Link>

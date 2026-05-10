@@ -137,36 +137,10 @@ function Landing() {
         {/* Rule */}
         <div className="mt-16 h-px w-full bg-foreground/20" />
 
-        {/* Offline guide */}
-        <section className="mt-12 grid grid-cols-12 gap-6">
-          <div className="col-span-12 md:col-span-2">
-            <div className="font-mono text-xs tracking-wide text-muted-foreground">No. 04</div>
-            <h2 className="mt-2 text-sm font-semibold tracking-tight text-foreground">
-              Coming soon
-            </h2>
-          </div>
-          <div className="col-span-12 md:col-span-10">
-            <p className="text-base leading-relaxed text-foreground md:text-lg">
-              A small irony: this guide to <em>offline</em> AI currently lives on the web, so
-              you need a connection to read it. We're fixing that. During the hackathon we also
-              built a fully <b>offline edition</b> — the same recommendations, setup steps, and
-              workflow guides, packaged as a single download you can keep on a USB stick, share
-              with a friend, or open on a plane. Once it's polished, it will be published right
-              here.
-            </p>
-            <p className="mt-6 font-mono text-xs tracking-wide text-muted-foreground">
-              Status → in review · expected shortly after the hackathon.
-            </p>
-          </div>
-        </section>
-
-        {/* Rule */}
-        <div className="mt-16 h-px w-full bg-foreground/20" />
-
         {/* Local thinking */}
         <section className="mt-12 grid grid-cols-12 gap-6">
           <div className="col-span-12 md:col-span-2">
-            <div className="font-mono text-xs tracking-wide text-muted-foreground">No. 05</div>
+            <div className="font-mono text-xs tracking-wide text-muted-foreground">No. 04</div>
             <h2 className="mt-2 text-sm font-semibold tracking-tight text-foreground">
               Local thinking
             </h2>
@@ -184,6 +158,32 @@ function Landing() {
               >
                 See the workflows →
               </Link>
+            </p>
+          </div>
+        </section>
+
+        {/* Rule */}
+        <div className="mt-16 h-px w-full bg-foreground/20" />
+
+        {/* Offline guide */}
+        <section className="mt-12 grid grid-cols-12 gap-6">
+          <div className="col-span-12 md:col-span-2">
+            <div className="font-mono text-xs tracking-wide text-muted-foreground">No. 05</div>
+            <h2 className="mt-2 text-sm font-semibold tracking-tight text-foreground">
+              Coming soon
+            </h2>
+          </div>
+          <div className="col-span-12 md:col-span-10">
+            <p className="text-base leading-relaxed text-foreground md:text-lg">
+              A small irony: this guide to <em>offline</em> AI currently lives on the web, so
+              you need a connection to read it. We're fixing that. During the hackathon we also
+              built a fully <b>offline edition</b> — the same recommendations, setup steps, and
+              workflow guides, packaged as a single download you can keep on a USB stick, share
+              with a friend, or open on a plane. Once it's polished, it will be published right
+              here.
+            </p>
+            <p className="mt-6 font-mono text-xs tracking-wide text-muted-foreground">
+              Status → in review · expected shortly after the hackathon.
             </p>
           </div>
         </section>

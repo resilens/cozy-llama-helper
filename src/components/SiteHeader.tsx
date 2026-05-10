@@ -4,17 +4,17 @@ import logo from "@/assets/simplon-off-logo-64.webp";
 export function SiteHeader() {
   return (
     <header className="border-b border-foreground/15 bg-background">
-      <div className="mx-auto grid max-w-6xl grid-cols-12 items-center gap-2 px-4 py-3 md:gap-4 md:px-6 md:py-4">
-        <Link to="/" className="col-span-6 flex items-center gap-3">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 md:grid md:grid-cols-12 md:gap-4 md:px-6 md:py-4">
+        <Link to="/" className="flex items-center gap-3 md:col-span-6">
           <img src={logo} alt="" className="h-6 w-6 md:h-8 md:w-8" />
           <span className="text-sm font-semibold tracking-tight text-foreground md:text-base">
             Simplon Off
           </span>
         </Link>
-        <div className="col-span-2 hidden text-xs tracking-wide text-muted-foreground md:block">
+        <div className="hidden text-xs tracking-wide text-muted-foreground md:col-span-2 md:block">
           Private · Local · Sustainable
         </div>
-        <div className="col-span-7 flex items-center justify-end gap-3 md:col-span-4">
+        <div className="flex items-center justify-end gap-3 md:col-span-4">
           <a
             href="https://www.mozilla.ai/open-tools/llamafile"
             target="_blank"

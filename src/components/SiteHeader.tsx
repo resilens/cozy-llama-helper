@@ -11,7 +11,14 @@ export function SiteHeader() {
             Simplon Off
           </span>
         </Link>
-        <nav className="hidden items-center gap-4 text-xs tracking-wide md:col-span-2 md:flex">
+        <nav className="hidden items-center gap-4 text-xs tracking-wide md:col-span-3 md:flex">
+          <Link
+            to="/setup"
+            className="text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
+            activeProps={{ className: "text-foreground" }}
+          >
+            Setup
+          </Link>
           <Link
             to="/documentation"
             className="text-muted-foreground underline-offset-4 hover:text-primary hover:underline"

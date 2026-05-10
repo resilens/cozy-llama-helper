@@ -13,7 +13,7 @@ export function SiteHeader() {
         </Link>
         <nav className="hidden items-center gap-4 text-xs tracking-wide md:col-span-3 md:flex">
           <Link
-            to="/setup"
+            to="/use-case"
             className="text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
             activeProps={{ className: "text-foreground" }}
           >

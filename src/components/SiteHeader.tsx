@@ -4,10 +4,10 @@ import logo from "@/assets/simplon-off-logo-64.webp";
 export function SiteHeader() {
   return (
     <header className="border-b border-foreground/15 bg-background">
-      <div className="mx-auto grid max-w-6xl grid-cols-12 items-center gap-4 px-6 py-4">
+      <div className="mx-auto grid max-w-6xl grid-cols-12 items-center gap-2 px-4 py-3 md:gap-4 md:px-6 md:py-4">
         <Link to="/" className="col-span-6 flex items-center gap-3">
-          <img src={logo} alt="" className="h-8 w-8" />
-          <span className="text-base font-semibold tracking-tight text-foreground">
+          <img src={logo} alt="" className="h-6 w-6 md:h-8 md:w-8" />
+          <span className="text-sm font-semibold tracking-tight text-foreground md:text-base">
             Simplon Off
           </span>
         </Link>

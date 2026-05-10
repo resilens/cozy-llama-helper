@@ -5,7 +5,7 @@ export function SiteHeader() {
   return (
     <header className="border-b border-foreground/15 bg-background">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 md:grid md:grid-cols-12 md:gap-4 md:px-6 md:py-4">
-        <Link to="/" className="flex items-center gap-3 md:col-span-6">
+        <Link to="/" className="flex items-center gap-3 md:col-span-5">
           <img src={logo} alt="" className="h-6 w-6 md:h-8 md:w-8" />
           <span className="text-sm font-semibold tracking-tight text-foreground md:text-base">
             Simplon Off

@@ -160,6 +160,34 @@ function Landing() {
           </div>
         </section>
 
+        {/* Rule */}
+        <div className="mt-16 h-px w-full bg-foreground/20" />
+
+        {/* Local thinking */}
+        <section className="mt-12 grid grid-cols-12 gap-6">
+          <div className="col-span-12 md:col-span-2">
+            <div className="font-mono text-xs tracking-wide text-muted-foreground">No. 05</div>
+            <h2 className="mt-2 text-sm font-semibold tracking-tight text-foreground">
+              Local thinking
+            </h2>
+          </div>
+          <div className="col-span-12 md:col-span-10">
+            <p className="text-base leading-relaxed text-foreground md:text-lg">
+              Once your model is running, it can plug into the apps you already use —
+              Thunderbird, LibreOffice, Inkscape. Private, offline, instant; no cloud
+              round-trip, no telemetry, no waiting.
+            </p>
+            <p className="mt-6 font-mono text-xs tracking-wide text-muted-foreground">
+              <Link
+                to="/documentation"
+                className="text-foreground underline-offset-4 hover:text-primary hover:underline"
+              >
+                See the workflows →
+              </Link>
+            </p>
+          </div>
+        </section>
+
         <footer className="mt-24 border-t border-foreground/20 pt-6">
           <div className="grid grid-cols-12 gap-6 font-mono text-xs tracking-wide text-muted-foreground">
             <div className="col-span-12 flex items-center gap-3 md:col-span-3">

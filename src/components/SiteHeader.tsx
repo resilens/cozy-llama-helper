@@ -17,7 +17,7 @@ export function SiteHeader() {
             className="text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
             activeProps={{ className: "text-foreground" }}
           >
-            Setup
+            Start
           </Link>
           <Link
             to="/documentation"

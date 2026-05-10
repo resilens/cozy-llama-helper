@@ -11,9 +11,22 @@ export function SiteHeader() {
             Simplon Off
           </span>
         </Link>
-        <div className="hidden text-xs tracking-wide text-muted-foreground md:col-span-2 md:block">
-          Private · Local · Sustainable
-        </div>
+        <nav className="hidden items-center gap-4 text-xs tracking-wide md:col-span-2 md:flex">
+          <Link
+            to="/documentation"
+            className="text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
+            activeProps={{ className: "text-foreground" }}
+          >
+            Workflows
+          </Link>
+          <Link
+            to="/about"
+            className="text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
+            activeProps={{ className: "text-foreground" }}
+          >
+            About
+          </Link>
+        </nav>
         <div className="flex items-center justify-end gap-3 md:col-span-4">
           <a
             href="https://www.mozilla.ai/open-tools/llamafile"

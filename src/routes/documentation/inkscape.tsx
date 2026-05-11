@@ -179,8 +179,8 @@ function InkscapePage() {
               <div className="mt-1">GreenTech · Hackathon</div>
             </div>
             <div className="col-span-6 md:col-span-3">
-              <div className="text-foreground">Runtime</div>
-              <div className="mt-1">llamafile · local</div>
+              <div className="text-foreground">Sponsored &amp; hosted by</div>
+              <a href="https://resilens.com" target="_blank" rel="noopener noreferrer" className="mt-1 inline-block underline-offset-4 hover:text-primary hover:underline">Resilens →</a>
             </div>
             <div className="col-span-6 md:col-span-3">
               <Link

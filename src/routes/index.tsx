@@ -170,20 +170,26 @@ function Landing() {
           <div className="col-span-12 md:col-span-2">
             <div className="font-mono text-xs tracking-wide text-muted-foreground">No. 05</div>
             <h2 className="mt-2 text-sm font-semibold tracking-tight text-foreground">
-              Coming soon
+              Offline edition
             </h2>
           </div>
           <div className="col-span-12 md:col-span-10">
             <p className="text-base leading-relaxed text-foreground md:text-lg">
               A small irony: this guide to <em>offline</em> AI currently lives on the web, so
-              you need a connection to read it. We're fixing that. During the hackathon we also
-              built a fully <b>offline edition</b> — the same recommendations, setup steps, and
-              workflow guides, packaged as a single download you can keep on a USB stick, share
-              with a friend, or open on a plane. Once it's polished, it will be published right
-              here.
+              David created a fully <b>offline edition</b> you can open without a connection.
+              It packages the same recommendations, setup steps, and workflow guides as a
+              portable artefact you can keep on a USB stick, share with a friend, or open on a
+              plane.
             </p>
             <p className="mt-6 font-mono text-xs tracking-wide text-muted-foreground">
-              Status → in review · expected shortly after the hackathon.
+              <a
+                href="https://dudic.github.io/oneclickai/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-foreground underline-offset-4 hover:text-primary hover:underline"
+              >
+                Open David's offline edition →
+              </a>
             </p>
           </div>
         </section>
